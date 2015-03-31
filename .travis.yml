@@ -1,0 +1,12 @@
+before_install:
+- "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng"
+script:
+- "mkdir _build && pdflatex -output-directory _build tex/script.tex"
+deploy:
+  provider: releases
+  api_key:
+    secure: cu9Mr72IRmZ8kpnWhgYH628qpKvRDUYf5NW5lc4X/1EM4u7dRxCpWE/SyF/sIu5bRIe7GEyV0BtFWqBsMACoxG6NpBGviMUILz/FzPoOiQR6yvPOC7P9NvyRRL1JjTXwbZqldudNSGuixrrEBA+SIWkMIuWviaCN40AHi/l7sps=
+  file: _build/script.pdf
+  skip_cleanup: true
+  on:
+    tags: true
